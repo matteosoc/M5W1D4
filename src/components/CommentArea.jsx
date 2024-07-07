@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react';
 import AddComment from './AddComment';
 import CommentList from './CommentList';
-import Spinner from 'react-bootstrap';
+import {Spinner} from 'react-bootstrap';
 
 function CommentArea({ asin }) {
+    const [isLoading, setIsloading] = useState(false);
     const [comments, setComments] = useState([])
 
+
     const loadComments = async () => {
+        setIsloading(true);
         const response = await fetch(`https://striveschool-api.herokuapp.com/api/books/${asin}/comments/`,
             {
                 headers: {
@@ -16,6 +19,7 @@ function CommentArea({ asin }) {
         const data = await response.json()
 
         setComments(data)
+        setIsloading(false);
     }
 
     useEffect(() => {
@@ -24,8 +28,20 @@ function CommentArea({ asin }) {
 
     return (
         <>
-            <CommentList comments={comments} />
-            <AddComment asin={asin}/>
+            {
+                isLoading ?
+                    (
+                        <Spinner animation="border" role="status">
+                            <span className="visually-hidden">Loading...</span>
+                        </Spinner>) :
+                    (        
+                        <>    
+                            <CommentList comments={comments} />
+                            <AddComment asin={asin} />
+                        </>
+                    )
+
+            }
         </>
     );
 }

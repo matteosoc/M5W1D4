@@ -11,7 +11,6 @@ function SingleComment({ comment }) {
         console.log('inizia fetch')
         console.log(comment._id)
 
-        
 
         fetch(`https://striveschool-api.herokuapp.com/api/comments/${comment._id}`, {
             headers: {
