@@ -1,10 +1,10 @@
 import SingleComment from './SingleComment'
 
-function CommentList({ comments }) {
+function CommentList({ comments, loadComments }) {
     return (
         <>
             {
-                comments.map((comment) => <SingleComment comment={comment} />)
+                comments.map((comment) => <SingleComment comment={comment} loadComments={loadComments}/>)
             }
         </>
     )

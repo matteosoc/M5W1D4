@@ -1,51 +1,43 @@
 import { useState } from 'react';
-import books from '../data/fantasy.json'
 import SingleBook from './SingleBook'
 import Spinner from 'react-bootstrap/Spinner';
-
-
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-// import Col from 'react-bootstrap/Col';
+import Col from 'react-bootstrap/Col';
+import CommentArea from './CommentArea';
 
 
-function AllTheBooks() {
-    const [word, setWord] = useState('')
-    const [filteredBooks, setFilteredBooks] = useState(books)
-    const [isLoading, setIsloading] = useState(false);
+function AllTheBooks({ filteredBooks, isLoading }) {
 
-    const keyUpFunction = (event) => {
-        setWord(event.target.value)
-        setIsloading(true);
+    const [selected, setSelected] = useState(null)
 
-        const filtered = books.filter((book) => {
-            return event.target.value.toLowerCase() === '' ? book : book.title.toLowerCase().includes(event.target.value.toLowerCase())
-        })
-        setFilteredBooks(filtered)
-
-        setIsloading(false);
+    const handleSelected = (asin) => {
+        if (selected === asin) {
+            setSelected(null)
+        } else {
+            setSelected(asin)
+        }
     }
 
     return (
         <>
             <Container fluid>
                 <Row>
-                    <input
-                        type='text'
-                        value={word}
-                        placeholder='Search'
-                        onChange={keyUpFunction}
-                    />
-                </Row>
-                <Row>
-                    {
-                        isLoading ? (
-                            <Spinner animation="border" role="status">
-                                <span className="visually-hidden">Loading...</span>
-                            </Spinner>) :
-                                filteredBooks.map((book) => <SingleBook key={book.asin} book={book} />)
-                            
-                    }
+                    <Col md={8}>
+                        <Row>
+                            {
+                                isLoading ? (
+                                    <Spinner animation="border" role="status">
+                                        <span className="visually-hidden">Loading...</span>
+                                    </Spinner>) :
+                                    filteredBooks.map((book) => <SingleBook book={book} selected={selected} handleSelected={handleSelected} />)
+
+                            }
+                        </Row>
+                    </Col>
+                    <Col md={4}>
+                        {selected && <CommentArea asin={selected}></CommentArea>}
+                    </Col>
                 </Row>
             </Container>
         </>

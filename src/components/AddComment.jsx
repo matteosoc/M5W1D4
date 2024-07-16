@@ -4,12 +4,15 @@ import Button from 'react-bootstrap/Button';
 
 
 
-function AddComment({ asin }) {
-    const [formValue, setFormValue] = useState({
+function AddComment({ asin, loadComments }) {
+    const initialFormState = {
         rate: "",
         comment: "",
         elementId: asin
-    })
+    }
+
+    const [formValue, setFormValue] = useState(initialFormState)
+
 
     const handleChange = (event) => {
         setFormValue({ ...formValue, [event.target.name]: event.target.value })
@@ -24,11 +27,17 @@ function AddComment({ asin }) {
             method: "POST",
             body: JSON.stringify(formValue)
         })
+
+        // carica commenti
+        loadComments()
+        //pulisce il form
+        setFormValue(initialFormState)
     }
 
     return (
         <Form>
-            <Form.Select aria-label="Default select example" name="rate" onChange={handleChange}>
+            <h4>Aggiungi recensione</h4>
+            <Form.Select aria-label="Default select example" name="rate" onChange={handleChange} value={formValue.rate}>
                 <option>Rate</option>
                 <option value="1">One</option>
                 <option value="2">Two</option>
@@ -38,10 +47,10 @@ function AddComment({ asin }) {
             </Form.Select>
             <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                 <Form.Label>Comment</Form.Label>
-                <Form.Control type="text" rows={3} name="comment" onChange={handleChange} />
+                <Form.Control type="text" rows={3} name="comment" onChange={handleChange} value={formValue.comment} />
             </Form.Group>
             <Button variant="primary" onClick={handleSaveComment}>
-                Submit
+                Invia
             </Button>
         </Form>
     )

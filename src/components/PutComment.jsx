@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 
-function PutComment( {comment} ) {
+function PutComment( {comment, loadComments} ) {
     console.log(comment._id)
 
     const [show, setShow] = useState(false);
@@ -34,6 +34,8 @@ function PutComment( {comment} ) {
         })
 
         await alert('recensione modificata')
+
+        loadComments()
     }
 
     return (

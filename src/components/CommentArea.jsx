@@ -24,7 +24,7 @@ function CommentArea({ asin }) {
 
     useEffect(() => {
         loadComments()
-    }, [])
+    }, [asin])
 
     return (
         <>
@@ -35,9 +35,10 @@ function CommentArea({ asin }) {
                             <span className="visually-hidden">Loading...</span>
                         </Spinner>) :
                     (        
-                        <>    
-                            <CommentList comments={comments} />
-                            <AddComment asin={asin} />
+                        <>   
+                            <AddComment asin={asin} loadComments={loadComments} />
+                            <h4>Recensioni</h4> 
+                            <CommentList comments={comments}  loadComments={loadComments}/>
                         </>
                     )
 

@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 
 
 
-function SingleComment({ comment }) {
+function SingleComment({ comment, loadComments }) {
 
     function handleDeleteComment() {
         console.log('inizia fetch')
@@ -20,6 +20,8 @@ function SingleComment({ comment }) {
             method: "DELETE",
         })
             .then(alert('eliminato'));
+
+        loadComments()
     }
 
     return (
@@ -34,7 +36,7 @@ function SingleComment({ comment }) {
                     </Button>
                 </ListGroup.Item>
                 <ListGroup.Item>
-                    <PutComment comment={comment}/>
+                    <PutComment comment={comment} loadComments={loadComments}/>
                 </ListGroup.Item>
             </ListGroup>
         </>

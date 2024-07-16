@@ -6,26 +6,24 @@ import './SingleBook.css'
 import CommentArea from './CommentArea';
 
 
-function SingleBook({book}) {
-  const [selected,setSelected] = useState(false)
 
-  const handleSelect = () => {
-    setSelected(!selected)
-  }
+function SingleBook({ book, selected, handleSelected }) {
 
 
   return (
-    <Col md={3}>
-        <Card className={selected ? 'mb-3 border' : 'mb-3'}>
-          <Card.Img variant="top" src={book.img} onClick={handleSelect} />
+      <Col md={3}>
+        <Card className={ selected === book.asin ? 'mb-3 border' : 'mb-3'}>
+          <Card.Img variant="top" src={book.img} onClick={() => handleSelected(book.asin)} />
           <Card.Body>
-              <Card.Title>{book.title}</Card.Title>
-              <Card.Text>{book.price} €</Card.Text>
-              {selected && <CommentArea asin={book.asin}/>}
+            <Card.Title>{book.title}</Card.Title>
+            <Card.Text>{book.price} €</Card.Text>
+            {/* selected && Comment area ... */}
           </Card.Body>
         </Card>
-    </Col>
+      </Col>
   );
 }
 
 export default SingleBook;
+
+// {selected && Comment area ... }
