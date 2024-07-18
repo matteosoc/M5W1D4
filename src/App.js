@@ -7,6 +7,9 @@ import AllTheBooks from './components/AllTheBooks';
 import books from './data/fantasy.json'
 import { useState } from 'react';
 import { ThemeContextProvider } from './context/ThemeContextProvider';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import NotFound from './components/NotFound';
+import BookDetails from './components/BookDetails'
 
 
 function App() {
@@ -27,14 +30,25 @@ function App() {
   }
 
   return (
-    <>
+    <BrowserRouter>
       <ThemeContextProvider>
-      <MyNav setWord={setWord} word={word} keyUpFunction={keyUpFunction}/>
-      <Welcome />
-      <AllTheBooks filteredBooks={filteredBooks} isLoading={isLoading}/>
-      <MyFooter />
+        <MyNav setWord={setWord} word={word} keyUpFunction={keyUpFunction} />
+        <Routes>
+          <Route path='/' element=
+          {
+            <>
+              <Welcome />
+              <AllTheBooks filteredBooks={filteredBooks} isLoading={isLoading} />
+            </>
+          } 
+          />
+          <Route path="/books/:asin" element={<BookDetails />} />
+          <Route path='/404' element={<NotFound />} />
+          <Route path='/*' element={<Navigate to="/404" />} />
+        </Routes>
+        <MyFooter />
       </ThemeContextProvider>
-    </>
+    </BrowserRouter>
   );
 }
 
