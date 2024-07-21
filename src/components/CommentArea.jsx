@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import AddComment from './AddComment';
 import CommentList from './CommentList';
-import {Spinner} from 'react-bootstrap';
+import { Spinner } from 'react-bootstrap';
 
 function CommentArea({ asin }) {
     const [isLoading, setIsloading] = useState(false);
@@ -28,6 +28,21 @@ function CommentArea({ asin }) {
 
     return (
         <>
+            <>
+                <AddComment asin={asin} loadComments={loadComments} />
+                <h4>Recensioni</h4>
+                <CommentList comments={comments} loadComments={loadComments} />
+            </>
+        </>
+    );
+}
+
+export default CommentArea;
+
+
+/*
+
+    con lo spinner
             {
                 isLoading ?
                     (
@@ -43,8 +58,5 @@ function CommentArea({ asin }) {
                     )
 
             }
-        </>
-    );
-}
 
-export default CommentArea;
+*/

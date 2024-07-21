@@ -29,7 +29,7 @@ function SingleComment({ comment, loadComments }) {
 
     return (
         <>
-            <ListGroup className='pb-3'>
+            <ListGroup className='pb-3' data-testid='commentComp'>
                 <ListGroup.Item className={theme === 'light' ? 'light' : 'bg-dark text-white'}>Rate: {comment.rate}</ListGroup.Item>
                 <ListGroup.Item className={theme === 'light' ? 'light' : 'bg-dark text-white'}>Commento: {comment.comment}</ListGroup.Item>
                 <ListGroup.Item className={theme === 'light' ? 'light' : 'bg-dark text-white'}>Autore: {comment.author}</ListGroup.Item>

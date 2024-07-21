@@ -11,7 +11,7 @@ function Welcome() {
   return (
     <>
         <Alert theme={theme === 'light' ? 'light' : 'warning'}>
-          Benvenuto/a sul mio nuovissimo sito!
+          Benvenuto sul mio nuovissimo sito!
         </Alert>
     </>
   );

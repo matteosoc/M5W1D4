@@ -11,7 +11,7 @@ import { useContext } from 'react';
 
 function AllTheBooks({ filteredBooks, isLoading }) {
     const [selected, setSelected] = useState(null)
-    const {theme, setTheme} = useContext(ThemeContext)
+    const { theme, setTheme } = useContext(ThemeContext)
 
     const handleSelected = (asin) => {
         if (selected === asin) {
@@ -33,7 +33,6 @@ function AllTheBooks({ filteredBooks, isLoading }) {
                                         <span className="visually-hidden">Loading...</span>
                                     </Spinner>) :
                                     filteredBooks.map((book) => <SingleBook book={book} selected={selected} handleSelected={handleSelected} />)
-
                             }
                         </Row>
                     </Col>
@@ -50,8 +49,5 @@ export default AllTheBooks;
 
 /*
 
-{
-    filteredBooks.map((book) => <SingleBook key={book.asin} book={book} />)
-}
 
 */

@@ -40,7 +40,7 @@ function AddComment({ asin, loadComments }) {
     return (
         <Form className='pb-3'>
             <h4>Aggiungi recensione</h4>
-            <Form.Select aria-label="Default select example" name="rate" onChange={handleChange} value={formValue.rate}>
+            <Form.Select placeholder='rate' aria-label="rate" name="rate" onChange={handleChange} value={formValue.rate}>
                 <option>Rate</option>
                 <option value="1">One</option>
                 <option value="2">Two</option>

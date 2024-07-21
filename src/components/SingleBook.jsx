@@ -20,8 +20,10 @@ function SingleBook({ book, selected, handleSelected }) {
       <Card
         className={
           selected === book.asin ? 'mb-3 border' : 'mb-3'
-        }>
-        <Card.Img variant="top" src={book.img} onClick={() => handleSelected(book.asin)} />
+        }
+        data-testid="red-border"
+        >
+        <Card.Img data-testid="card-image" variant="top" src={book.img} onClick={() => handleSelected(book.asin)} />
         <Card.Body className={theme === 'light' ? "bg-white" : "bg-dark text-white"}>
           <Card.Title>{book.title}</Card.Title>
           <Card.Text>{book.price} €</Card.Text>
