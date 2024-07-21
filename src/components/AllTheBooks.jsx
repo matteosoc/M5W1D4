@@ -5,11 +5,13 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import CommentArea from './CommentArea';
+import { ThemeContext } from '../context/ThemeContextProvider';
+import { useContext } from 'react';
 
 
 function AllTheBooks({ filteredBooks, isLoading }) {
-
     const [selected, setSelected] = useState(null)
+    const {theme, setTheme} = useContext(ThemeContext)
 
     const handleSelected = (asin) => {
         if (selected === asin) {
@@ -21,7 +23,7 @@ function AllTheBooks({ filteredBooks, isLoading }) {
 
     return (
         <>
-            <Container fluid>
+            <Container fluid className={theme === 'light' ? "p-3" : "bg-dark text-white p-3"} >
                 <Row>
                     <Col md={8}>
                         <Row>
@@ -35,7 +37,7 @@ function AllTheBooks({ filteredBooks, isLoading }) {
                             }
                         </Row>
                     </Col>
-                    <Col md={4}>
+                    <Col md={4} sticky="top">
                         {selected && <CommentArea asin={selected}></CommentArea>}
                     </Col>
                 </Row>

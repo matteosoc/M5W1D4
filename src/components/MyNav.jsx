@@ -5,32 +5,36 @@ import Form from 'react-bootstrap/Form';
 import { ThemeContext } from '../context/ThemeContextProvider';
 import { useContext } from 'react';
 import SwitchTheme from './SwitchTheme';
+import { Link } from 'react-router-dom';
+import './MyNav.css'
 
 function MyNav({ word, keyUpFunction }) {
 
-  const {theme, setTheme} = useContext(ThemeContext)
+  const { theme, setTheme } = useContext(ThemeContext)
 
   return (
-    <Navbar expand="lg" className={theme === 'light' ? "mb-5" : "bg-dark"}>
+    <Navbar sticky="top" className='p-2' expand="lg" bg={theme === "light" ? "light" : "dark"} data-bs-theme={theme === "light" ? "light" : "dark"}>
       <Container>
-        <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+        <Navbar.Brand as={Link} to='/'>React-Bootstrap</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#">About</Nav.Link>
-            <Nav.Link href="#">Broswe</Nav.Link>
+            <Nav.Link as={Link} to='/'>Home</Nav.Link>
+            <Nav.Link as={Link} to='/about'>About</Nav.Link>
+            <Nav.Link as={Link} to='/broswe'>Broswe</Nav.Link>
           </Nav>
+          <SwitchTheme />
+          <Form className="d-flex">
+            <Form.Control
+              type="text"
+              placeholder="Search"
+              className=" mr-sm-2"
+              value={word}
+              onChange={keyUpFunction}
+            />
+          </Form>
         </Navbar.Collapse>
       </Container>
-      <SwitchTheme />
-      <Form.Control
-        type="text"
-        placeholder="Search"
-        className=" mr-sm-2"
-        value={word}
-        onChange={keyUpFunction}
-      />
     </Navbar>
   );
 }

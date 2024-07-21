@@ -5,21 +5,23 @@ import CommentArea from './CommentArea';
 import books from '../data/fantasy.json'
 import { Card } from 'react-bootstrap';
 
+import { ThemeContext } from '../context/ThemeContextProvider';
+import { useContext } from 'react';
+
 
 
 function BookDetails() {
     const { asin } = useParams();
+    const {theme, setTheme} = useContext(ThemeContext)
 
     const book = books.filter((book) => {
         return book.asin.includes(`${asin}`)
     });
 
-    console.log(book[0].title)
-
-
+    // console.log(book[0].title)
 
     return (
-        <Container fluid>
+        <Container fluid className={theme === 'light' ? "p-3" : "bg-dark text-white p-3"}>
             <Row>
                 <Col md={6}>
                         <Card className='mb-3'>

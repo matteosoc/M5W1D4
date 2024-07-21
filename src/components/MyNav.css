@@ -1,0 +1,7 @@
+#root > nav > form > div > label {
+    color: black;
+}
+
+#custom-switch {
+    margin-top: 5px;
+}

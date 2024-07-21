@@ -14,11 +14,11 @@ function SwitchTheme() {
   }
 
   return (
-    <Form>
+    <Form className='pe-3 d-flex pt-3 pb-2'>
+      <Form.Label className={theme === 'light' ? "pe-3" : "pe-3 text-white"}>Dark Mode</Form.Label>
       <Form.Check // prettier-ignore
         type="switch"
         id="custom-switch"
-        label="Dark Mode"
         onClick={SwitchTheme}
       />
     </Form>

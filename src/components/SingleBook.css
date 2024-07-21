@@ -1,3 +1,7 @@
 .border {
     border: solid 2px red !important;
 }
+
+.card-body {
+    border-radius: 0 0 4px 4px;
+}

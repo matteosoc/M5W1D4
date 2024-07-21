@@ -27,7 +27,7 @@ function PutComment( {comment, loadComments} ) {
         await fetch(`https://striveschool-api.herokuapp.com/api/comments/${comment._id}`, {
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Njg5NTI4ZjJiNWMyMDAwMTUyNzFmYzAiLCJpYXQiOjE3MjAyNzU1OTksImV4cCI6MTcyMTQ4NTE5OX0.1l2L_C5IfmeqdcCMQv4lPw5mDqwTeOs2uBpdvhJseAs"
+                "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjlkMTdhMzQxNzAwOTAwMTUwZDA0MDUiLCJpYXQiOjE3MjE1NzEyMzUsImV4cCI6MTcyMjc4MDgzNX0.ZKoAxeQutdOygJdYoQol5Z_mz5iGS465ln_TI3CM9q0"
             },
             method: "PUT",
             body: JSON.stringify(formValue)
@@ -40,10 +40,9 @@ function PutComment( {comment, loadComments} ) {
 
     return (
         <>
-            <Button variant="primary" onClick={handleShow}>
-                Modifica commento
+            <Button variant="warning" size="sm" onClick={handleShow}>
+                Modifica
             </Button>
-
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Modifica commento</Modal.Title>

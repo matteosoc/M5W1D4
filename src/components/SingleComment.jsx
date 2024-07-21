@@ -3,19 +3,22 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import PutComment from './PutComment';
 import Button from 'react-bootstrap/Button';
 
+import { ThemeContext } from '../context/ThemeContextProvider';
+import { useContext } from 'react';
+
 
 
 function SingleComment({ comment, loadComments }) {
 
+    const {theme, setTheme} = useContext(ThemeContext)
+
     function handleDeleteComment() {
         console.log('inizia fetch')
-        console.log(comment._id)
-
 
         fetch(`https://striveschool-api.herokuapp.com/api/comments/${comment._id}`, {
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Njg5NTI4ZjJiNWMyMDAwMTUyNzFmYzAiLCJpYXQiOjE3MjAyNzU1OTksImV4cCI6MTcyMTQ4NTE5OX0.1l2L_C5IfmeqdcCMQv4lPw5mDqwTeOs2uBpdvhJseAs"
+                "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjlkMTdhMzQxNzAwOTAwMTUwZDA0MDUiLCJpYXQiOjE3MjE1NzEyMzUsImV4cCI6MTcyMjc4MDgzNX0.ZKoAxeQutdOygJdYoQol5Z_mz5iGS465ln_TI3CM9q0"
             },
             method: "DELETE",
         })
@@ -26,17 +29,15 @@ function SingleComment({ comment, loadComments }) {
 
     return (
         <>
-            <ListGroup>
-                <ListGroup.Item>Rate: {comment.rate}</ListGroup.Item>
-                <ListGroup.Item>Commento: {comment.comment}</ListGroup.Item>
-                <ListGroup.Item>Autore: {comment.author}</ListGroup.Item>
-                <ListGroup.Item>
-                    <Button variant="primary" onClick={handleDeleteComment}>
-                        Elimina commento
+            <ListGroup className='pb-3'>
+                <ListGroup.Item className={theme === 'light' ? 'light' : 'bg-dark text-white'}>Rate: {comment.rate}</ListGroup.Item>
+                <ListGroup.Item className={theme === 'light' ? 'light' : 'bg-dark text-white'}>Commento: {comment.comment}</ListGroup.Item>
+                <ListGroup.Item className={theme === 'light' ? 'light' : 'bg-dark text-white'}>Autore: {comment.author}</ListGroup.Item>
+                <ListGroup.Item className={theme === 'light' ? 'light' : 'bg-dark text-white'}>
+                    <PutComment comment={comment} loadComments={loadComments} />
+                    <Button size="sm" className='m-2' variant="danger" onClick={handleDeleteComment}>
+                        Elimina
                     </Button>
-                </ListGroup.Item>
-                <ListGroup.Item>
-                    <PutComment comment={comment} loadComments={loadComments}/>
                 </ListGroup.Item>
             </ListGroup>
         </>
