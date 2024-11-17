@@ -23,7 +23,7 @@ function BookDetails() {
     return (
         <Container fluid className={theme === 'light' ? "p-3" : "bg-dark text-white p-3"}>
             <Row>
-                <Col md={6}>
+                <Col md={4}>
                         <Card className='mb-3'>
                             <Card.Img variant="top" src={book[0].img} />
                             <Card.Body>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import AddComment from './AddComment';
 import CommentList from './CommentList';
-import { Spinner } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 
 function CommentArea({ asin }) {
     const [isLoading, setIsloading] = useState(false);
@@ -28,11 +28,13 @@ function CommentArea({ asin }) {
 
     return (
         <>
-            <>
-                <AddComment asin={asin} loadComments={loadComments} />
-                <h4>Recensioni</h4>
-                <CommentList comments={comments} loadComments={loadComments} />
-            </>
+            <div className="positionFixedTop">
+                <Container>
+                    <AddComment asin={asin} loadComments={loadComments} />
+                    <h4>Recensioni</h4>
+                    <CommentList comments={comments} loadComments={loadComments} />
+                </Container>
+            </div>
         </>
     );
 }
